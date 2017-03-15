@@ -1,0 +1,12 @@
+{
+  "presets": [
+    "es2015"
+  ],
+  "plugins": [
+    "add-module-exports",
+    "transform-es2015-destructuring",
+    "transform-object-rest-spread"
+  ],
+  "sourceMaps": true,
+  "retainLines": true
+}
