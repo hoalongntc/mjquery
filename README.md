@@ -10,7 +10,7 @@ Simple and lightweigh jQuery replacement. Using the same API with jQuery.
 npm install mjQuery
 ```
 
-## Supported APIs
+## APIs
 
 ### Global
 Globally exported as `$`, `mjQuery` and `jQuery`
