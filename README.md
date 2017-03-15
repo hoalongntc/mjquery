@@ -1,11 +1,16 @@
-mQuery
+mjQuery
 ======
 Simple and lightweigh jQuery replacement. Using the same API with jQuery.
+
+## Install
+```
+npm install mjQuery
+```
 
 ## Supported APIs
 
 ### Global
-Globally exported as `$`, `mQuery` and `jQuery`
+Globally exported as `$`, `mjQuery` and `jQuery`
 
 ### Selecting Elements
 ```

@@ -1,7 +1,7 @@
 {
-  "name": "mquery",
+  "name": "mjquery",
   "version": "1.0.0",
-  "description": "MegaNet jquery alternative",
+  "description": "Simple and lightwieght jquery alternative",
   "main": "src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -11,11 +11,9 @@
     "url": "git+https://gitlab.com/meganet/mquery.git"
   },
   "keywords": [
-    "meganet",
-    "jquery",
     "jquery",
     "alternative",
-    "mquery"
+    "mjquery"
   ],
   "author": "developer.tungnguyen@gmail.com",
   "license": "MIT",
