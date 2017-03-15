@@ -86,6 +86,7 @@ const css = (el, attr, val) => {
 // };
 
 const ready = (el, fn) => {
+  if (!el) return;
   if (document.readyState !== 'loading') {
     fn();
   } else if (document.addEventListener) {
@@ -100,6 +101,7 @@ const ready = (el, fn) => {
 };
 
 const addEventListener = (el, eventName, handler) => {
+  if (!el) return;
   if (el.addEventListener) {
     el.addEventListener(eventName, handler);
   } else {
@@ -110,6 +112,7 @@ const addEventListener = (el, eventName, handler) => {
 };
 
 const click = (el, handler) => {
+  if (!el) return undefined;
   if (typeof handler === 'undefined') {
     el.click();
     return el;
@@ -119,6 +122,7 @@ const click = (el, handler) => {
 };
 
 const attr = (el, key, val) => {
+  if (!el) return '';
   if (val) {
     el.setAttribute(key, val);
     return el;
@@ -127,6 +131,7 @@ const attr = (el, key, val) => {
 };
 
 const html = (el, val) => {
+  if (!el) return '';
   if (val) {
     el.innerHTML = val;
     return el;
@@ -135,6 +140,7 @@ const html = (el, val) => {
 };
 
 const text = (el, val) => {
+  if (!el) return '';
   if (val) {
     if (el.textContent !== undefined) {
       el.textContent = val;
@@ -146,9 +152,10 @@ const text = (el, val) => {
   return el.textContent || el.innerText;
 };
 
-const val = (el, value) => attr(el, 'value', value);
+const val = (el, value) => (el ? attr(el, 'value', value) : '');
 
 const submit = (el) => {
+  if (!el) return undefined;
   if (typeof el.submit === 'function') {
     el.submit();
   }
@@ -182,7 +189,7 @@ const param = obj => Object.keys(obj)
   .map(keyName => `${encodeURIComponent(keyName)}=${encodeURIComponent(obj[keyName])}`)
   .join('&');
 
-const ajax = (url, obj) => {
+function ajax(url, obj) {
   if (typeof url === 'object') {
     obj = url;
     url = obj.url;
@@ -211,11 +218,11 @@ const ajax = (url, obj) => {
     request.send();
   }
   return request;
-};
+}
 
 const clone = obj => JSON.parse(JSON.stringify(obj));
 
-const $ = (el) => {
+function $(el) {
   el = el || '';
   this.selector = '';
 
@@ -229,22 +236,12 @@ const $ = (el) => {
     this.elements = [el];
   }
 
-  if (this.selector) {
-    let selector = this.selector;
-    let selectorType = 'querySelectorAll';
-
-    if (!/[\s>~:()]/.test(selector) && selector.indexOf('#') === 0) {
-      selectorType = 'getElementById';
-      selector = selector.substr(1, selector.length);
-    }
-
-    this.elements = document[selectorType](selector);
-  }
+  this.elements = this.selector ? document.querySelectorAll(this.selector) : (this.elements || []);
   this.elements = this.elements || [];
   this.length = this.elements.length;
 
   return this;
-};
+}
 
 const utilFuns = {
   ajax,
@@ -264,7 +261,7 @@ const collectionFuncs = {
   on: addEventListener,
 };
 Object.keys(collectionFuncs).forEach((fName) => {
-  $.prototype[fName] = (...args) => {
+  $.prototype[fName] = function (...args) {
     this.elements = Array.prototype.map
       .call(this.elements, el => collectionFuncs[fName].apply(el, [el].concat(args)));
     return this;
@@ -281,10 +278,10 @@ const singleFuns = {
   click,
 };
 Object.keys(singleFuns).forEach((fName) => {
-  $.prototype[fName] = (...args) => {
+  $.prototype[fName] = function (...args) {
     const el = this.elements[0];
     return singleFuns[fName].apply(el, [el].concat(args));
   };
 });
 
-module.export = el => new $(el);
+export default el => new $(el);

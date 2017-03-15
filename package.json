@@ -6,6 +6,11 @@
   "scripts": {
     "commit": "git-cz",
     "test": "echo \"Error: no test specified\" && exit 0",
+    "prebuild": "rimraf dist",
+    "build": "npm-run-all --parallel build:*",
+    "build:main": "babel --out-dir dist src",
+    "build:umd": "webpack --output-filename mjquery.js",
+    "build:umd.min": "webpack --output-filename mjquery.min.js -p",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post"
   },
   "repository": {
@@ -24,7 +29,8 @@
   },
   "homepage": "https://github.com/hoalongntc/mjquery#README",
   "devDependencies": {
-    "babel": "^6.23.0",
+    "babel-cli": "^6.24.0",
+    "babel-core": "^6.24.0",
     "babel-loader": "^6.4.0",
     "babel-plugin-add-module-exports": "^0.2.1",
     "babel-plugin-transform-es2015-destructuring": "^6.23.0",
@@ -37,6 +43,9 @@
     "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-jsx-a11y": "^4.0.0",
     "eslint-plugin-react": "^6.10.0",
+    "expose-loader": "^0.7.3",
+    "npm-run-all": "^4.0.2",
+    "rimraf": "^2.6.1",
     "semantic-release": "^6.3.2",
     "webpack": "^2.2.1"
   },

@@ -2,6 +2,9 @@ mjQuery
 ======
 Simple and lightweigh jQuery replacement. Using the same API with jQuery.
 
+[![Travis](https://img.shields.io/travis/hoalongntc/mjquery.svg?style=flat-square)](https://travis-ci.org/hoalongntc/mjquery)
+[![Download](https://img.shields.io/npm/dt/mjquery.svg?style=flat-square)](https://www.npmjs.com/package/mjquery)
+
 ## Install
 ```
 npm install mjQuery
