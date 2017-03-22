@@ -153,7 +153,7 @@ const text = (el, val) => {
 };
 
 const prop = (el, propName, value) => {
-  if (!el || !propName || !Object.prototype.hasOwnProperty.call(el, propName)) return undefined;
+  if (!el || !propName || !Object.prototype.hasAttributes.call(el, propName)) return undefined;
   if (typeof value !== 'undefined') {
     el[propName] = value;
     return el;
