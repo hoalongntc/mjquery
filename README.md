@@ -31,19 +31,17 @@ $(selector)
 ```
 $(selector).show()          # Set display to none
 $(selector).hide()          # Clear display css attribute
-$(selector).addClass()
-$(selector).removeClass()
-$(selector).hasClass()
-$(selector).toggleClass()
+$(selector).addClass(className)
+$(selector).removeClass(className)
+$(selector).hasClass(className)
+$(selector).toggleClass(className)
 $(selector).css(cssClassname, cssValue)
-```
 
-### Data
-```
 $(selector).val()           # Get value of input
 $(selector).val(value)      $ Set value to input
 $(selector).attr(attrName)
 $(selector).attr(attrName, value)
+$(selector).removeAttr(attrName)
 $(selector).prop(propName)
 $(selector).prop(propName, value)
 ```
