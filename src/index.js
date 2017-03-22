@@ -130,6 +130,12 @@ const attr = (el, key, val) => {
   return el.getAttribute(key);
 };
 
+const removeAttr = (el, attrName) => {
+  if (!el) return undefined;
+  el.removeAttribute(attrName);
+  return el;
+};
+
 const html = (el, val) => {
   if (!el) return undefined;
   if (val) {
@@ -286,6 +292,7 @@ Object.keys(collectionFuncs).forEach((fName) => {
 
 const singleFuns = {
   attr,
+  removeAttr,
   html,
   text,
   val,
