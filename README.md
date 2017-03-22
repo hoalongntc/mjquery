@@ -38,6 +38,16 @@ $(selector).toggleClass()
 $(selector).css(cssClassname, cssValue)
 ```
 
+### Data
+```
+$(selector).val()           # Get value of input
+$(selector).val(value)      $ Set value to input
+$(selector).attr(attrName)
+$(selector).attr(attrName, value)
+$(selector).prop(propName)
+$(selector).prop(propName, value)
+```
+
 ### Events
 ```
 $(selector).on(eventName, eventHandler);

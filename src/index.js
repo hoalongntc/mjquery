@@ -122,7 +122,7 @@ const click = (el, handler) => {
 };
 
 const attr = (el, key, val) => {
-  if (!el) return '';
+  if (!el) return undefined;
   if (val) {
     el.setAttribute(key, val);
     return el;
@@ -131,7 +131,7 @@ const attr = (el, key, val) => {
 };
 
 const html = (el, val) => {
-  if (!el) return '';
+  if (!el) return undefined;
   if (val) {
     el.innerHTML = val;
     return el;
@@ -140,7 +140,7 @@ const html = (el, val) => {
 };
 
 const text = (el, val) => {
-  if (!el) return '';
+  if (!el) return undefined;
   if (val) {
     if (el.textContent !== undefined) {
       el.textContent = val;
@@ -152,7 +152,23 @@ const text = (el, val) => {
   return el.textContent || el.innerText;
 };
 
-const val = (el, value) => (el ? attr(el, 'value', value) : '');
+const prop = (el, propName, value) => {
+  if (!el || !propName || !Object.prototype.hasOwnProperty.call(el, propName)) return undefined;
+  if (typeof value !== 'undefined') {
+    el[propName] = value;
+    return el;
+  }
+  return el[propName];
+};
+
+const val = (el, value) => {
+  if (!el) return undefined;
+  if (typeof value !== 'undefined') {
+    el.value = value;
+    return el;
+  }
+  return el.value;
+};
 
 const submit = (el) => {
   if (!el) return undefined;
@@ -273,6 +289,7 @@ const singleFuns = {
   html,
   text,
   val,
+  prop,
   submit,
   ready,
   click,
